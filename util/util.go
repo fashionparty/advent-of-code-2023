@@ -47,3 +47,22 @@ func Update[T any](collection []T, transformation func(T) T) []T {
 	}
 	return result
 }
+
+func WindowString(input string, windowSize int) []string {
+	result := []string{}
+	loopLimit := len(input) - windowSize + 1
+	for i := 0; i < loopLimit; i++ {
+		result = append(result, input[i:i+windowSize])
+	}
+	return result
+}
+
+func FindSubstringIndex(input string, substring string) int {
+	loopLimit := len(input) - len(substring) + 1
+	for i := 0; i < loopLimit; i++ {
+		if substring == input[i:i+len(substring)] {
+			return i
+		}
+	}
+	return 0
+}
