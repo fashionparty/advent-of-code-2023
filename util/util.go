@@ -2,6 +2,7 @@ package util
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -57,12 +58,22 @@ func WindowString(input string, windowSize int) []string {
 	return result
 }
 
-func FindSubstringIndex(input string, substring string) int {
+func FindSubstringIndex(input string, substring string) (int, error) {
 	loopLimit := len(input) - len(substring) + 1
 	for i := 0; i < loopLimit; i++ {
 		if substring == input[i:i+len(substring)] {
-			return i
+			return i, nil
 		}
 	}
-	return 0
+	return 0, errors.New("substring not found")
+}
+
+func FindBiggestUint(values []uint) uint {
+	var result uint
+	for _, v := range values {
+		if v > result {
+			result = v
+		}
+	}
+	return result
 }

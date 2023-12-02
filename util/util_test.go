@@ -1,6 +1,8 @@
 package util
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestWindowString(t *testing.T) {
 	input := "abcdefg"
@@ -10,5 +12,14 @@ func TestWindowString(t *testing.T) {
 		if got[i] != want[i] {
 			t.Errorf("WindowString = %v, expected = %v", got, want)
 		}
+	}
+}
+
+func TestFindSubstringIndex(t *testing.T) {
+	input := "fasfhelloasdga"
+	want := 4
+	got, _ := FindSubstringIndex(input, "hello")
+	if want != got {
+		t.Errorf("findSubstringIndex = %v, expected = %v", got, want)
 	}
 }
