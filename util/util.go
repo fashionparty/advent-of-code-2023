@@ -68,6 +68,28 @@ func FindSubstringIndex(input string, substring string) (int, error) {
 	return 0, errors.New("substring not found")
 }
 
+func FindBiggestNumber[T numbers](input []T) T {
+	var result T = input[0]
+	for _, v := range input {
+		if v > result {
+			result = v
+		}
+	}
+	return result
+}
+
+func FindSmallestNumber[T numbers](input []T) T {
+	var result T = input[0]
+	{
+		for _, v := range input {
+			if v < result {
+				result = v
+			}
+		}
+	}
+	return result
+}
+
 func FindBiggestUint(values []uint) uint {
 	var result uint
 	for _, v := range values {
@@ -76,4 +98,21 @@ func FindBiggestUint(values []uint) uint {
 		}
 	}
 	return result
+}
+
+type numbers interface {
+	int | int8 | int16 | int32 | int64 |
+		float32 | float64 |
+		uint | uint8 | uint16 | uint32 | uint64
+}
+
+var Digits = []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+
+func StringContains(input string, collection []string) bool {
+	for _, v := range collection {
+		if v == input {
+			return true
+		}
+	}
+	return false
 }
